@@ -14,15 +14,43 @@ models (the ones Firefox's own page translation uses), for orOS's translation
 on the device (`translate/engine.js` in [koulaxizis/oros](https://github.com/koulaxizis/oros):
 Text Tools › Translate, and Writer's suggestions later).
 
-| Direction | Model | Release |
-|---|---|---|
-| Greek → English | `translate/el-en/spring-2024_RJucgx7LRMKB9E4oSSzdtA/` | tiny, Release |
-| English → Greek | `translate/en-el/spring-2024_Y3ThG3XkTxG4ROUQK2LpVg/` | tiny, Release |
+Every language goes to and from English; other pairs go through English
+(two models, as Firefox does). English and 21 languages, 39 directions:
 
-Each folder holds the three files exactly as Mozilla publishes them (gzip):
-`model.*.intgemm.alphas.bin.gz`, `lex.50.50.*.s2t.bin.gz` and `vocab.*.spm.gz`.
+| Language | Code | → English | English → | Download |
+|---|---|---|---|---|
+| Arabic | `ar` | yes | yes | 51 MB |
+| Bulgarian | `bg` | yes | yes | 50 MB |
+| Czech | `cs` | yes | yes | 51 MB |
+| German | `de` | yes | yes | 51 MB |
+| Greek | `el` | yes | yes | 30 MB |
+| Spanish | `es` | yes | yes | 52 MB |
+| Finnish | `fi` | yes | yes | 51 MB |
+| French | `fr` | yes | yes | 52 MB |
+| Hungarian | `hu` | yes | yes | 41 MB |
+| Italian | `it` | yes | yes | 53 MB |
+| Japanese | `ja` | — | yes | 36 MB |
+| Dutch | `nl` | yes | yes | 52 MB |
+| Polish | `pl` | yes | yes | 50 MB |
+| Portuguese | `pt` | yes | yes | 51 MB |
+| Romanian | `ro` | yes | yes | 30 MB |
+| Russian | `ru` | yes | — | 15 MB |
+| Albanian | `sq` | yes | yes | 31 MB |
+| Swedish | `sv` | yes | yes | 31 MB |
+| Turkish | `tr` | yes | yes | 30 MB |
+| Ukrainian | `uk` | yes | yes | 40 MB |
+| Chinese (Simplified) | `zh` | — | yes | 37 MB |
+
+Russian has only Russian → English, Chinese and Japanese only English → them:
+Mozilla has not released the other direction yet. The folder of each
+direction is `translate/<from>-<to>/<Mozilla's folder>/`.
+
+Each folder holds the files exactly as Mozilla publishes them (gzip):
+`model.*.intgemm.alphas.bin.gz`, `lex.50.50.*.s2t.bin.gz` and `vocab.*.spm.gz`
+(Chinese and Japanese: `srcvocab.*.spm.gz` and `trgvocab.*.spm.gz`).
 `translate/index.json` records where they came from (Mozilla's model registry
-`models.json` and the date it was read) and Mozilla's quality scores.
+`models.json` and when it was generated), each file's unpacked size and
+SHA-256, and Mozilla's quality scores (flores200-plus).
 
 Licence: [MPL-2.0](LICENSE), © Mozilla Corporation and contributors.
 
@@ -39,7 +67,12 @@ into orOS itself.
    and take the entry of the direction with `"releaseStatus": "Release"`.
 2. Download its three files from the registry's `baseUrl` + `path`, unchanged,
    into `translate/<from>-<to>/<folder>/`.
-3. Unpack each one, write its byte size and SHA-256 into `MODELS` in
-   `translate/engine.js` (koulaxizis/oros), and add the row above.
+3. Add the direction to `translate/index.json` with each file's unpacked
+   size, download size and SHA-256 (the model's must equal Mozilla's
+   `uncompressedHash`), and add the row above.
+4. In koulaxizis/oros run `node translate/make-models.js <this checkout>`:
+   it writes the `MODELS` table of `translate/engine.js` from `index.json`.
 
-GitHub Pages serves up to 1 GB per site; one direction is about 15 MB.
+GitHub Pages serves up to 1 GB per site: a direction is 15 to 30 MB, all of
+them together about 885 MB, so a language more than these needs a second
+repository.

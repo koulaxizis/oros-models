@@ -1,0 +1,48 @@
+{
+ "source": "https://storage.googleapis.com/moz-fx-translations-data--303e-prod-translations-data/db/models.json",
+ "registryGenerated": "2026-11-13T00:49:21Z",
+ "pairs": {
+  "el-en": {
+   "architecture": "tiny",
+   "releaseStatus": "Release",
+   "folder": "spring-2024_RJucgx7LRMKB9E4oSSzdtA",
+   "files": [
+    "model.elen.intgemm.alphas.bin.gz",
+    "lex.50.50.elen.s2t.bin.gz",
+    "vocab.elen.spm.gz"
+   ],
+   "modelSha256Unpacked": "0a43c3716156061494d995d0c88113e789f8d919e0c88a15bc1ad360e0482a8c",
+   "metrics": {
+    "bleu": 31.6901,
+    "chrf": 59.3792,
+    "chrfpp": 57.514,
+    "comet22": 0.855,
+    "llm-ref": 4.292,
+    "metricx24-qe": 3.4388,
+    "metricx24": 3.7333,
+    "spbleu": 34.882
+   }
+  },
+  "en-el": {
+   "architecture": "tiny",
+   "releaseStatus": "Release",
+   "folder": "spring-2024_Y3ThG3XkTxG4ROUQK2LpVg",
+   "files": [
+    "model.enel.intgemm.alphas.bin.gz",
+    "lex.50.50.enel.s2t.bin.gz",
+    "vocab.enel.spm.gz"
+   ],
+   "modelSha256Unpacked": "724b358d399c6b23444de36d76e9e2630c7024c29d9e617323b820a11631535a",
+   "metrics": {
+    "bleu": 26.8379,
+    "chrf": 53.7101,
+    "chrfpp": 51.4961,
+    "comet22": 0.8721,
+    "llm-ref": 4.388,
+    "metricx24-qe": 2.9325,
+    "metricx24": 3.4351,
+    "spbleu": 37.0592
+   }
+  }
+ }
+}

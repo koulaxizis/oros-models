@@ -76,3 +76,21 @@ into orOS itself.
 GitHub Pages serves up to 1 GB per site: a direction is 15 to 30 MB, all of
 them together about 885 MB, so a language more than these needs a second
 repository.
+
+## mockups/
+
+The garment models of orOS Mockups (`mockups/goods/cloth3d.js` in
+[koulaxizis/oros](https://github.com/koulaxizis/oros)): a T-shirt and a tote
+bag, laid flat. Unlike the folders above these are our own work, made from
+nothing but `mockups/make.py` with Blender 5.2.3 LTS as a Python module
+(`pip install bpy==5.2.3`, then `python mockups/make.py`), and released under
+CC0. A run writes the same bytes every time, so `index.json` (sizes, SHA-256,
+print areas in mm) can be checked by anyone.
+
+| Model | File | Download |
+|---|---|---|
+| T-shirt | `tshirt.glb` | 0.9 MB |
+| Tote bag | `tote.glb` | 0.5 MB |
+
+orOS downloads a model only when the person presses "Download the 3D model"
+and keeps it in the browser's Cache Storage after checking its SHA-256.

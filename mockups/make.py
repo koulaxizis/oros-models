@@ -241,7 +241,52 @@ def tote():
     return objs, {"bag": {"w": W, "h": H, "print": {"front": {"x": -140, "y": 150, "w": 280, "h": 300}}}}
 
 
-MODELS = {"tshirt": tshirt, "tote": tote}
+def hoodie():
+    reset()
+    neck = ellipse(0, 372, 100, 62, -math.pi / 2, 0, 10)
+    half = neck + [(250, 332), (470, -250), (388, -300), (286, 110), (286, -330), (280, -398), (250, -406), (0, -408)]
+    poly = mirror_half(half)
+    body = pillow("hoodie", poly, thick=26, voxel=4, puff=9, folds=Folds(5, 9, 2.6, 240))
+    hood_poly = ellipse(0, 400, 175, 140, 0, 2 * math.pi, 40)[:-1]
+    hood = pillow("hood", hood_poly, thick=16, voxel=4, puff=5, puff_in=50, folds=Folds(9, 5, 1.5, 160))
+    for v in hood.data.vertices:
+        v.co.z -= 12
+    pk = [(-150, -40), (150, -40), (196, -300), (-196, -300)]
+    pocket = pillow("pocket", pk, thick=4, voxel=3, puff=1.5, puff_in=40, folds=None, smooth=6)
+    for v in pocket.data.vertices:
+        v.co.z += 17
+    strings = []
+    for k, sx in enumerate((-1, 1)):
+        pts = [(sx * (38 + 4 * t), 312 - 140 * t, 16 + 2 * math.sin(t * 3)) for t in [i / 14 for i in range(15)]]
+        strings.append(("string_%d" % k, tube("string_%d" % k, pts, 3, False, 0.8)))
+    decimate(body, 0.35); decimate(hood, 0.5); decimate(pocket, 0.5)
+    return [("hoodie", body), ("hood", hood), ("pocket", pocket)] + strings, {
+        "hoodie": {"w": 940, "h": 780, "print": {"front": {"x": -140, "y": 235, "w": 280, "h": 250}, "chest": {"x": 60, "y": 250, "w": 95, "h": 95},
+                                                  "back": {"x": -150, "y": 280, "w": 300, "h": 400}}}}
+
+
+def socks():
+    reset()
+    def one(ox, oy):
+        leg_l, leg_r, top, heel = -47, 47, 250, -40
+        pts = [(leg_l, top), (leg_r, top), (leg_r, heel + 40)]
+        pts += [(leg_r + 20, heel + 20), (150, heel + 10)]
+        pts += ellipse(160, heel - 38, 48, 48, math.pi / 2, -math.pi / 2, 8)[1:]
+        pts += [(60, heel - 86)]
+        pts += ellipse(10, heel - 30, 57, 56, -math.pi / 2, -math.pi, 6)[1:]
+        return [(x + ox, y + oy) for (x, y) in pts]
+    objs = []
+    for k, (ox, oy) in enumerate(((-75, 20), (75, -20))):
+        ob = pillow("sock_%d" % k, one(ox, oy), thick=12, voxel=3, puff=4, puff_in=30, folds=Folds(13 + k, 6, 1.4, 120), smooth=8)
+        for v in ob.data.vertices:
+            v.co.z += 3 * k
+        decimate(ob, 0.5)
+        objs.append(("sock_%d" % k, ob))
+    return objs, {"sock_0": {"w": 95, "h": 380, "print": {"front": {"x": -120, "y": 260, "w": 90, "h": 250}}},
+                  "sock_1": {"w": 95, "h": 380, "print": {"front": {"x": 30, "y": 220, "w": 90, "h": 250}}}}
+
+
+MODELS = {"tshirt": tshirt, "tote": tote, "hoodie": hoodie, "socks": socks}
 
 if __name__ == "__main__":
     index = {"version": VERSION, "units": "mm", "models": {}}

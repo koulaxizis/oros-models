@@ -1,0 +1,61 @@
+{
+ "models": {
+  "tote": {
+   "bytes": 546596,
+   "file": "tote.glb",
+   "meshes": [
+    "bag",
+    "handle_long_0",
+    "handle_long_1",
+    "handle_short_0",
+    "handle_short_1"
+   ],
+   "parts": {
+    "bag": {
+     "h": 420,
+     "print": {
+      "front": {
+       "h": 300,
+       "w": 280,
+       "x": -140,
+       "y": 150
+      }
+     },
+     "w": 380
+    }
+   },
+   "sha256": "de93e7f264c03ecb62643579ed64baddc6274c1c20abeafcc892d9d146d70e5b"
+  },
+  "tshirt": {
+   "bytes": 919940,
+   "file": "tshirt.glb",
+   "meshes": [
+    "shirt",
+    "collar"
+   ],
+   "parts": {
+    "shirt": {
+     "h": 726,
+     "print": {
+      "chest": {
+       "h": 95,
+       "w": 95,
+       "x": 60,
+       "y": 250
+      },
+      "front": {
+       "h": 400,
+       "w": 300,
+       "x": -150,
+       "y": 250
+      }
+     },
+     "w": 796
+    }
+   },
+   "sha256": "197326a74da6c11045e0f11af82cf6da4dfabf33938fbf2f14f63932ac96c088"
+  }
+ },
+ "units": "mm",
+ "version": 1
+}

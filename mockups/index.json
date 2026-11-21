@@ -1,5 +1,78 @@
 {
  "models": {
+  "hoodie": {
+   "bytes": 1921944,
+   "file": "hoodie.glb",
+   "meshes": [
+    "hoodie",
+    "hood",
+    "pocket",
+    "string_0",
+    "string_1"
+   ],
+   "parts": {
+    "hoodie": {
+     "h": 780,
+     "print": {
+      "back": {
+       "h": 400,
+       "w": 300,
+       "x": -150,
+       "y": 280
+      },
+      "chest": {
+       "h": 95,
+       "w": 95,
+       "x": 60,
+       "y": 250
+      },
+      "front": {
+       "h": 250,
+       "w": 280,
+       "x": -140,
+       "y": 235
+      }
+     },
+     "w": 940
+    }
+   },
+   "sha256": "78c9f5f2ddce9b9bf6687e4922c04ca44fe598f8d5ebfc86a5aa47c412c803e6"
+  },
+  "socks": {
+   "bytes": 589228,
+   "file": "socks.glb",
+   "meshes": [
+    "sock_0",
+    "sock_1"
+   ],
+   "parts": {
+    "sock_0": {
+     "h": 380,
+     "print": {
+      "front": {
+       "h": 250,
+       "w": 90,
+       "x": -120,
+       "y": 260
+      }
+     },
+     "w": 95
+    },
+    "sock_1": {
+     "h": 380,
+     "print": {
+      "front": {
+       "h": 250,
+       "w": 90,
+       "x": 30,
+       "y": 220
+      }
+     },
+     "w": 95
+    }
+   },
+   "sha256": "b2b1dbe71597b3466cc2053e35161bb7191e848d7e78ba75a77a8a506f1f6228"
+  },
   "tote": {
    "bytes": 546596,
    "file": "tote.glb",
